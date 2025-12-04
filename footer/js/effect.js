@@ -1,7 +1,7 @@
 // terms.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. TORCH EFFECT: Đèn pin theo chuột
+    //TORCH EFFECT: Đèn pin theo chuột
     const torch = document.getElementById('torch-overlay');
     if (torch) {
         document.addEventListener('mousemove', (e) => {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. PARTICLES: Tạo hạt bụi
+    // PARTICLES: Tạo hạt bụi
     const particleContainer = document.getElementById('particles-container');
     if (particleContainer) {
         function createParticle() {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(createParticle, 300); // Tạo hạt mỗi 300ms
     }
 
-    // 3. SCROLL REVEAL & ACTIVE LINK
+    // SCROLL REVEAL & ACTIVE LINK
     const reveals = document.querySelectorAll('.reveal-on-scroll');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(e => console.error('Lỗi tải footer:', e));
     }
 
-    // 4. READING PROGRESS BAR (Thanh tiến trình kiểu RPG)
+    // READING PROGRESS BAR (Thanh tiến trình kiểu RPG)
     // Tạo thanh bar bằng JS để không phải sửa HTML
     const progressBarContainer = document.createElement('div');
     progressBarContainer.className = 'fixed top-0 left-0 w-full h-1 bg-[#140805] z-[60]';
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + "%";
     });
 
-    // 5. BACK TO TOP BUTTON (Nút Hồi thành)
+    // BACK TO TOP BUTTON (Nút Hồi thành)
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '▲'; // Có thể thay bằng SVG mũi tên
     backToTopBtn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#140805] text-[#d4af37] border border-[#d4af37] rounded-full text-xl font-bold opacity-0 invisible transition-all duration-300 hover:bg-[#c2412d] hover:text-[#f3f1e6] hover:scale-110 z-40 shadow-[0_0_15px_#000]';
@@ -121,4 +121,51 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // MOBILE MENU
+    const mobileBtn = document.getElementById('mobile-quest-btn');
+    const mobileMenu = document.getElementById('mobile-menu-overlay');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileNavContainer = document.getElementById('mobile-nav-container');
+    const sidebarSource = document.getElementById('sidebar-nav');
+
+    // a. Tự động copy link từ Sidebar sang Mobile Menu (đỡ phải viết lại HTML)
+    if (sidebarSource && mobileNavContainer) {
+        // Copy HTML
+        mobileNavContainer.innerHTML = sidebarSource.innerHTML;
+        
+        // Tùy chỉnh lại style cho các link trong Mobile để to, dễ bấm hơn
+        const mobileLinks = mobileNavContainer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            // Xóa style của sidebar cũ
+            link.className = ''; 
+            // Thêm style mới: Chữ to, căn giữa, màu sáng
+            link.classList.add('text-base', 'text-[#a68b7c]', 'hover:text-[#d4af37]', 'font-bold', 'tracking-wide', 'transition-colors', 'block', 'py-2');
+            
+            // Thêm sự kiện: Bấm vào link -> Đóng menu luôn
+            link.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+        });
+    }
+
+    // b. Hàm đóng mở menu
+    function toggleMenu(show) {
+        if (show) {
+            mobileMenu.classList.remove('hidden');
+            // Timeout nhỏ để hiệu ứng opacity chạy được (do display:none không transition)
+            setTimeout(() => {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+            }, 10);
+        } else {
+            mobileMenu.classList.add('opacity-0', 'invisible');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300); // Đợi 300ms cho hết hiệu ứng mờ dần rồi mới ẩn
+        }
+    }
+
+    // c. Gắn sự kiện click
+    if (mobileBtn) mobileBtn.addEventListener('click', () => toggleMenu(true));
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => toggleMenu(false));
 });
