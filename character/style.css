@@ -1,6 +1,4 @@
-/* =========================================
-           1. CẤU HÌNH CHUNG & MÀU SẮC
-           ========================================= */
+        /*CẤU HÌNH CHUNG & MÀU SẮC*/
         :root {
             --primary: #c2412d;       /* Tím */
             --accent: #F7C04A;        /* Vàng */
@@ -38,9 +36,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
         h1, h2, h3 { font-family: 'Cinzel', serif; text-transform: uppercase; }
 
-        /* =========================================
-           3. HERO & CỐT TRUYỆN
-           ========================================= */
+        /*NHÂN VẬT & CỐT TRUYỆN*/
         .hero-story-section {
             background: linear-gradient(to bottom, rgba(0,0,0,0.4), #0a0303), url('character/oc.gif') center/cover;
             padding: 120px 0 100px; text-align: center; position: relative;
@@ -69,9 +65,7 @@
         }
         .btn-trailer:hover { background: var(--accent); color: #2e0249; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(247, 192, 74, 0.4); }
 
-        /* =========================================
-           4. GAMEPLAY
-           ========================================= */
+        /*GAMEPLAY*/
         .gameplay-section {
             padding: 80px 0; 
             background: linear-gradient(180deg, #140805 0%, #3e120d 50%, #140805 100%);
@@ -99,9 +93,7 @@
         .gp-item h4 { font-size: 1.1rem; margin: 0 0 10px 0; color: #fff; letter-spacing: 1px; }
         .gp-item p { font-size: 0.9rem; color: #aaa; margin: 0; font-weight: 400; text-transform: none; line-height: 1.4; }
 
-        /* =========================================
-           5. CHARACTER SHOWCASE (NỀN TỐI)
-           ========================================= */
+        /*CHARACTER SHOWCASE (NỀN TỐI) */
         #characters {
             padding: 0; position: relative;
             background-color: #140805;
@@ -111,7 +103,6 @@
         }
 
         /* Nền trang trí */
-        /* [ĐÃ SỬA] Làm nổi bật tam giác trái bằng màu tím và tăng opacity */
         .decor-left-stripe-bg {
             position: absolute; top: 0; left: 0; width: 600px; height: 100%; z-index: 1;
             /* background: repeating-linear-gradient(135deg, var(--primary), var(--primary) 5px, #3a1a68 5px, #3a1a68 10px); */
@@ -128,7 +119,7 @@
         .decor-right-solid-bg {
             position: absolute; bottom: 0; right: 0; width: 350px; height: 350px; z-index: 1;
             background-color: #2b120a; /* Nâu đỏ đậm */
-    /* Thêm gradient nhẹ để tạo khối */
+        /* Thêm gradient nhẹ để tạo khối */
             background-image: linear-gradient(to top left, #c2412d, transparent);
             clip-path: polygon(100% 0, 100% 100%, 0 100%);
             transition: background-color 0.4s ease;
@@ -244,7 +235,7 @@
         .footer-bottom { border-top: 1px solid rgba(212, 175, 55, 0.1); background: #0a0000; padding: 24px 20px; margin-top: 0; }
         .footer-bottom-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-size: 0.75rem; color: #5d2e1e; font-weight: 500; } */
 
-        /* --- VIDEO MODAL --- */
+        /*VIDEO MODAL*/
         .video-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.3s; }
         .video-modal.active { opacity: 1; visibility: visible; }
         .video-container { width: 85%; max-width: 900px; aspect-ratio: 16/9; background: #000; position: relative; border: 1px solid #333; }
@@ -252,7 +243,6 @@
 
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 900px) {
-        /* 1. Hiện nút Hamburger (quan trọng) */
         .hamburger { 
             display: block; 
             font-size: 1.8rem; 
@@ -260,10 +250,10 @@
             cursor: pointer; 
         }
         
-        /* 2. Ẩn nút download của máy tính */
+        /*Ẩn nút download của máy tính*/
         .desktop-dl { display: none; }
 
-        /* 3. Cấu hình Menu xổ xuống */
+        /*Cấu hình Menu xổ xuống*/
         .nav-menu {
             display: none; /* Mặc định ẩn */
             flex-direction: column;
@@ -279,21 +269,20 @@
             z-index: 999;
         }
 
-        /* 4. Khi có class "active" (do JS thêm vào) thì hiện menu ra */
+        /*Khi có class "active" (do JS thêm vào) thì hiện menu ra */
         .nav-menu.active { 
             display: flex; 
         }
         
         .nav-menu li { margin: 10px 0; }
         
-        /* 5. Hiện nút download trong menu mobile */
+        /*Hiện nút download trong menu mobile */
         .mobile-dl { 
             display: block; 
             margin-top: 10px; 
         }
         .mobile-dl .btn-dl { display: inline-block; }
 
-        /* --- CÁC PHẦN KHÁC GIỮ NGUYÊN --- */
         .hero h1 { font-size: 2.5rem; }
         .intro-grid { grid-template-columns: 1fr; gap: 30px; }
         .gameplay-list { grid-template-columns: 1fr 1fr; }
@@ -314,12 +303,10 @@
         .decor-title { font-size: 0.8rem; }
         .decor-number { font-size: 3.5rem; }
         }
-        /* =========================================
-        7. HIỆU ỨNG SCROLL REVEAL (MỚI THÊM)
-        ========================================= */
+        /*HIỆU ỨNG SCROLL REVEAL*/
         .reveal {
             position: relative;
-            transform: translateY(100px); /* Dịch xuống 100px */
+            transform: translateY(100px); 
             opacity: 0; /* Ẩn đi */
             transition: all 1s ease; /* Thời gian hiện ra là 1 giây */
         }
